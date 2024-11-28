@@ -8,7 +8,7 @@ import net.radstevee.textadventure.prompt.Prompts
 import kotlin.system.exitProcess
 
 interface MovingScene : InteractableScene {
-    fun entityInDirection(playerName: String, direction: Direction): Entity
+    fun entityInDirection(playerName: String, direction: Direction): Entity?
     fun canMove(playerName: String, direction: Direction): Boolean
     fun move(playerName: String, direction: Direction)
     fun movePrompt(playerName: String): String
@@ -23,12 +23,12 @@ interface MovingScene : InteractableScene {
                 direction.toString()
             }
 
-            println(
-                directionString + " " + I18nManager.getExistsMessages().random() + " " + entityInDirection(
-                    playerName,
-                    direction
-                ).toString() + "."
-            )
+            entityInDirection(
+                playerName,
+                direction
+            )?.let { entity ->
+                println("$directionString ${I18nManager.getExistsMessages().random()} $entity.")
+            }
         }
 
         val direction = Prompts.promptDirection(movePrompt(playerName))

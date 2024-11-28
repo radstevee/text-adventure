@@ -35,7 +35,7 @@ fun main() {
     val wantsToEnter = promptBool(I18nManager.translate("FOREST_PROMPT"))
     if (!wantsToEnter) {
         println(I18nManager.translate("DOES_NOT_WANT_TO_ENTER", playerName))
-        return
+        gameLost()
     }
 
     StartScene().display(playerName)

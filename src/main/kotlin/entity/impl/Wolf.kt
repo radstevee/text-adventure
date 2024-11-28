@@ -11,13 +11,9 @@ class Wolf : RandomizedFightable {
 
     override fun loseFightDialogue(playerName: String) = I18nManager.translate("WOLF_FIGHT_LOST")
 
-    override fun onLose(playerName: String) {
-        gameLost()
-    }
+    override fun onLose(playerName: String) = gameLost()
 
-    override fun onWin(playerName: String) {
-        gameWon()
-    }
+    override fun onWin(playerName: String) = gameWon()
 
     override fun toString() = I18nManager.translate("ENTITY_WOLF")
 }
