@@ -7,9 +7,7 @@ import net.radstevee.textadventure.i18n.I18nManager
 import net.radstevee.textadventure.scene.ClimbScene
 import net.radstevee.textadventure.scene.Scene
 
-class WallClimbScene(override val climbable: Climbable) : ClimbScene {
-    override var parent: Scene? = null
-
+class WallClimbScene(override val climbable: Climbable, override var parent: Scene?) : ClimbScene {
     override fun prompt(playerName: String) = I18nManager.translate("CLIMBING_WALL_PROMPT")
 
     override fun onDoesNotWantToClimb(playerName: String) = gameLost()

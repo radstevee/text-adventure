@@ -40,6 +40,8 @@ interface MovingScene : InteractableScene {
 
         if (canMove(playerName, direction)) {
             move(playerName, direction)
+        } else {
+            println(I18nManager.translate("CANNOT_MOVE"))
         }
     }
 }

@@ -26,9 +26,9 @@ class StartScene : MovingScene {
     override fun move(playerName: String, direction: Direction) {
         val subScene = when (direction) {
             Direction.LEFT -> WolfFightScene(Wolf())
-            Direction.RIGHT -> DeepForestScene()
-            Direction.UP -> WallClimbScene(Wall())
-            Direction.DOWN -> ExitScene()
+            Direction.RIGHT -> DeepForestScene(this)
+            Direction.UP -> WallClimbScene(Wall(), this)
+            Direction.DOWN -> ExitScene(this)
         }
 
         startSubScene(playerName, subScene)
