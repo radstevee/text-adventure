@@ -16,7 +16,7 @@ object I18nManager {
         loadBundle(Locale.getDefault())
     }
 
-    fun loadBundle(locale: Locale) {
+    private fun loadBundle(locale: Locale) {
         currentBundle = runCatching {
             PropertyResourceBundle.getBundle(FILE_PREFIX, locale)
         }.getOrElse {

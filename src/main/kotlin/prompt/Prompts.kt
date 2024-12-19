@@ -45,4 +45,23 @@ object Prompts {
             false
         }
     }
+
+    fun promptLeftRight(
+        prompt: String,
+        fgColor: AnsiColor = AnsiColor.AQUA,
+        bgColor: AnsiColor? = null,
+        bold: Boolean = false
+    ): Direction? {
+        val input = prompt(prompt + " " + I18nManager.translate("LEFT_RIGHT"), fgColor, bgColor, bold).lowercase()
+
+        if (input in I18nManager.getLeftInputs()) {
+            return Direction.LEFT
+        }
+
+        if (input in I18nManager.getRightInputs()) {
+            return Direction.RIGHT
+        }
+
+        return null
+    }
 }

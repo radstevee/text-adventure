@@ -6,6 +6,5 @@ import net.radstevee.textadventure.i18n.I18nManager
 class Path : Entity {
     override fun toString() = I18nManager.translate("ENTITY_PATH")
 
-    override fun interact(playerName: String) {
-    }
+    override fun interact(playerName: String) {}
 }

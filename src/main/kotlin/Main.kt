@@ -39,4 +39,7 @@ fun main() {
     }
 
     StartScene().display(playerName)
+
+    // only gets called if all scenes end up returning, thus we lose.
+    gameLost()
 }

@@ -2,8 +2,8 @@ package net.radstevee.textadventure.scene.impl.deep_forest
 
 import net.radstevee.textadventure.Direction
 import net.radstevee.textadventure.entity.Entity
-import net.radstevee.textadventure.entity.impl.House
 import net.radstevee.textadventure.entity.impl.Path
+import net.radstevee.textadventure.entity.impl.deep_forest.house.House
 import net.radstevee.textadventure.i18n.I18nManager
 import net.radstevee.textadventure.scene.MovingScene
 import net.radstevee.textadventure.scene.Scene
@@ -21,10 +21,8 @@ class DeepForestScene(override var parent: Scene?) : MovingScene {
             return Path()
         }
 
-        if (moveCount >= 6) {
-            if (direction == Direction.LEFT) {
-                return house
-            }
+        if (moveCount >= 6 && direction == Direction.LEFT) {
+            return house
         }
 
         return null
