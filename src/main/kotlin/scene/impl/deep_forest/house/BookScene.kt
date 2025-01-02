@@ -1,4 +1,4 @@
-package net.radstevee.textadventure.scene.impl.deep_forest
+package net.radstevee.textadventure.scene.impl.deep_forest.house
 
 import net.radstevee.textadventure.Direction
 import net.radstevee.textadventure.i18n.I18nManager
@@ -20,22 +20,28 @@ class BookScene(override var parent: Scene?) : Scene {
         while (!shouldExit) {
             val direction = Prompts.promptLeftRight("")
 
-            if (direction == Direction.LEFT && page == 0 || direction == Direction.RIGHT && page == PAGE_AMOUNT) {
-                continue
-            }
+            when {
+                direction == Direction.LEFT && page == 0 || direction == Direction.RIGHT && page == PAGE_AMOUNT -> {
+                    continue
+                }
 
-            if (direction == Direction.LEFT) {
-                page--
-            }
+                direction == Direction.LEFT -> {
+                    page--
+                }
 
-            if (direction == Direction.RIGHT) {
-                page++
+                direction == Direction.RIGHT -> {
+                    page++
+                }
+
+                direction == null -> {
+                    parent?.display(playerName)
+                    break
+                }
             }
 
             val pageContent = I18nManager.translateStringArray("BOOK_CONTENTS")[page].format(page)
 
-            println(I18nManager.translate("BOOK_PAGE", "-1"))
-            println(I18nManager.translate("BOOK_PAGE").replace("%s", "$page")) // ???
+            println(I18nManager.translate("BOOK_PAGE", "$page").replace("0", "$page")) // ???
             println(pageContent)
         }
     }

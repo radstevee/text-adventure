@@ -1,4 +1,4 @@
-package net.radstevee.textadventure.scene.impl.deep_forest
+package net.radstevee.textadventure.scene.impl.deep_forest.house
 
 import net.radstevee.textadventure.i18n.I18nManager
 import net.radstevee.textadventure.prompt.Prompts
@@ -16,6 +16,6 @@ class DrawerScene(override var parent: Scene?) : Scene {
             return
         }
 
-        startSubScene(playerName, BookScene(this))
+        BookScene(parent).display(playerName)
     }
 }
