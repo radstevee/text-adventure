@@ -3,7 +3,7 @@ plugins {
     id("com.gradleup.shadow") version "9.0.0-beta4"
 }
 
-group = "net.radstevee.textadventure"
+group = "net.radsteve.textadventure"
 version = "0.0.0"
 
 repositories {
