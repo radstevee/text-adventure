@@ -3,12 +3,12 @@ package net.radsteve.textadventure.entity.impl.deep_forest.house
 import net.radsteve.textadventure.entity.Entity
 import net.radsteve.textadventure.i18n.I18nManager
 import net.radsteve.textadventure.scene.Scene
+import net.radsteve.textadventure.scene.impl.deep_forest.house.DrawerScene
 
-class Kitchen(private val parentScene: Scene?) : Entity {
-    override fun toString() = I18nManager.translate("ENTITY_KITCHEN")
+class DrawerEntity(private val parentScene: Scene) : Entity {
+    override fun toString() = I18nManager.translate("ENTITY_DRAWER")
 
     override fun interact(playerName: String) {
-        println(I18nManager.translate("KITCHEN"))
-        parentScene?.display(playerName)
+        DrawerScene(parentScene).display(playerName)
     }
 }

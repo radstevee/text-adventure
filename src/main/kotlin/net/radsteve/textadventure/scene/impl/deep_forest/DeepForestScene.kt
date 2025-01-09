@@ -2,8 +2,8 @@ package net.radsteve.textadventure.scene.impl.deep_forest
 
 import net.radsteve.textadventure.Direction
 import net.radsteve.textadventure.entity.Entity
-import net.radsteve.textadventure.entity.impl.Path
-import net.radsteve.textadventure.entity.impl.deep_forest.house.House
+import net.radsteve.textadventure.entity.impl.PathEntity
+import net.radsteve.textadventure.entity.impl.deep_forest.house.HouseEntity
 import net.radsteve.textadventure.i18n.I18nManager
 import net.radsteve.textadventure.scene.MovingScene
 import net.radsteve.textadventure.scene.Scene
@@ -11,14 +11,14 @@ import net.radsteve.textadventure.scene.Scene
 class DeepForestScene(override var parent: Scene?) : MovingScene {
     private var moveCount = 0
     private val texts = I18nManager.translateStringArray("DEEPER_INTO_FOREST")
-    private val house = House()
+    private val house = HouseEntity()
 
     override fun entityInDirection(
         playerName: String,
         direction: Direction
     ): Entity? {
         if (direction == Direction.UP && moveCount < 6) {
-            return Path()
+            return PathEntity()
         }
 
         if (moveCount >= 6 && direction == Direction.LEFT) {

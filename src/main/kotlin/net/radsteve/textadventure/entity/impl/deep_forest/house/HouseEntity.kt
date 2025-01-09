@@ -5,7 +5,7 @@ import net.radsteve.textadventure.i18n.I18nManager
 import net.radsteve.textadventure.prompt.Prompts
 import net.radsteve.textadventure.scene.impl.deep_forest.house.HouseScene
 
-class House : Entity {
+class HouseEntity : Entity {
     override fun toString() = I18nManager.translate("ENTITY_HOUSE")
 
     override fun interact(playerName: String) {

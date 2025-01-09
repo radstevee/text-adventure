@@ -6,7 +6,7 @@ import net.radsteve.textadventure.gameLost
 import net.radsteve.textadventure.gameWon
 import net.radsteve.textadventure.i18n.I18nManager
 
-class Wolf : RandomizedFightable {
+class WolfEntity : RandomizedFightable {
     override fun winFightDialogue(playerName: String) = I18nManager.translate("WOLF_FIGHT_WON")
 
     override fun loseFightDialogue(playerName: String) = I18nManager.translate("WOLF_FIGHT_LOST")
