@@ -4,10 +4,10 @@ package net.radstevee.textadventure.i18n
 import java.util.*
 
 object I18nManager {
-    const val FILE_PREFIX = "translations/game"
+    private const val FILE_PREFIX = "translations/game"
 
-    val defaultLocale = Locale.of("en", "US")
-    lateinit var currentBundle: ResourceBundle
+    private val defaultLocale: Locale = Locale.of("en", "US")
+    private lateinit var currentBundle: ResourceBundle
 
     private val cache = mutableMapOf<String, String>()
     private val stringListCache = mutableMapOf<String, List<String>>()
@@ -35,7 +35,7 @@ object I18nManager {
     fun translateStringArray(key: String): List<String> {
         if (key in stringListCache) return stringListCache[key]!!
 
-        return currentBundle.getString(key).split(",").map(String::trim).also { value -> stringListCache[key] = value }
+        return currentBundle.getString(key).split(";").map(String::trim).also { value -> stringListCache[key] = value }
     }
 
     fun getYesInputs() = translateStringArray("YES_INPUTS")

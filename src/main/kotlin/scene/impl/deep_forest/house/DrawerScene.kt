@@ -16,6 +16,6 @@ class DrawerScene(override var parent: Scene?) : Scene {
             return
         }
 
-        BookScene(parent).display(playerName)
+        BookViewerScene(parent).display(playerName)
     }
 }

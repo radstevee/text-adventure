@@ -13,6 +13,7 @@ fun randomBool() = Random.nextDouble(0.0, 1.0) >= 0.55
 fun gameWon() {
     print(AnsiColor.GREEN_BACKGROUND)
     print(AnsiColor.BRIGHT_BLACK)
+    print(AnsiColor.BOLD)
     print(I18nManager.translate("GAME_WON"))
     println(AnsiColor.RESET)
 
@@ -22,6 +23,7 @@ fun gameWon() {
 fun gameLost() {
     print(AnsiColor.RED_BACKGROUND)
     print(AnsiColor.BRIGHT_BLACK)
+    print(AnsiColor.BOLD)
     print(I18nManager.translate("GAME_LOST"))
     println(AnsiColor.RESET)
 
@@ -40,6 +42,6 @@ fun main() {
 
     StartScene().display(playerName)
 
-    // only gets called if all scenes end up returning, thus we lose.
+    // only gets called once all scenes end without exiting, thus we lose.
     gameLost()
 }

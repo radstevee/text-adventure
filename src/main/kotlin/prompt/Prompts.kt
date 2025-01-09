@@ -36,13 +36,13 @@ object Prompts {
         fgColor: AnsiColor = AnsiColor.AQUA,
         bgColor: AnsiColor? = null,
         bold: Boolean = false
-    ) = when (prompt(prompt + " " + I18nManager.translate("YES_NO"), fgColor, bgColor, bold).lowercase()) {
+    ): Boolean = when (prompt(prompt + " " + I18nManager.translate("YES_NO"), fgColor, bgColor, bold).lowercase()) {
         in I18nManager.getYesInputs() -> true
         in I18nManager.getNoInputs() -> false
 
         else -> {
-            println(I18nManager.translate("INVALID_BOOL_INPUT"))
-            false
+            println(I18nManager.translate("INVALID_INPUT"))
+            promptBool(prompt, fgColor, bgColor, bold)
         }
     }
 

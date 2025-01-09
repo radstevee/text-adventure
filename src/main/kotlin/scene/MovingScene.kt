@@ -5,7 +5,6 @@ import net.radstevee.textadventure.Direction
 import net.radstevee.textadventure.entity.Entity
 import net.radstevee.textadventure.i18n.I18nManager
 import net.radstevee.textadventure.prompt.Prompts
-import kotlin.system.exitProcess
 
 interface MovingScene : InteractableScene {
     fun entityInDirection(playerName: String, direction: Direction): Entity?
@@ -34,14 +33,16 @@ interface MovingScene : InteractableScene {
         val direction = Prompts.promptDirection(movePrompt(playerName))
 
         if (direction == null) {
-            println(I18nManager.translate("INVALID_DIRECTION_INPUT"))
-            exitProcess(0)
+            println(I18nManager.translate("INVALID_INPUT"))
+            display(playerName)
+            return
         }
 
         if (canMove(playerName, direction)) {
             move(playerName, direction)
         } else {
             println(I18nManager.translate("CANNOT_MOVE"))
+            display(playerName)
         }
     }
 }

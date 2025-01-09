@@ -1,7 +1,6 @@
 plugins {
     kotlin("jvm") version "2.1.0"
-    id("com.gradleup.shadow") version "8.3.1"
-    application
+    id("com.gradleup.shadow") version "9.0.0-beta4"
 }
 
 group = "net.radstevee.textadventure"
@@ -11,14 +10,8 @@ repositories {
     mavenCentral()
 }
 
-tasks.assemble {
-    dependsOn("shadowJar")
-}
-
-kotlin {
-    jvmToolchain(21)
-}
-
-application {
-    mainClass.set("net.radstevee.textadventure.MainKt")
+tasks {
+    assemble {
+        dependsOn(shadowJar)
+    }
 }
