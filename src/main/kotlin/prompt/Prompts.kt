@@ -15,7 +15,9 @@ object Prompts {
 
         print(fgColor)
         bgColor?.let(::print)
-        if (bold) print(AnsiColor.BOLD)
+        if (bold) {
+            print(AnsiColor.BOLD)
+        }
 
         print(I18nManager.translate("PROMPT"))
         print(AnsiColor.RESET)
