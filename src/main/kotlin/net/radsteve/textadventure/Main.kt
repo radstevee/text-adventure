@@ -44,7 +44,11 @@ fun main() {
     }
 
     if (javaVersionInt != 21) {
+        print(AnsiColor.YELLOW_BACKGROUND)
+        print(AnsiColor.BOLD)
         println(I18nManager.translate("JAVA_8_WARNING", javaVersionInt))
+        print(AnsiColor.RESET)
+        print(AnsiColor.RESET)
     }
 
     val playerName = prompt(I18nManager.translate("NAME_PROMPT"))
