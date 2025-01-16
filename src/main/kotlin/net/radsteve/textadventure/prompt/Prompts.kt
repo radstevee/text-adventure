@@ -3,6 +3,7 @@ package net.radsteve.textadventure.prompt
 
 import net.radsteve.textadventure.Direction
 import net.radsteve.textadventure.i18n.I18nManager
+import kotlin.system.exitProcess
 
 object Prompts {
     fun prompt(
@@ -23,7 +24,12 @@ object Prompts {
         print(AnsiColor.RESET)
         print(" ")
 
-        return readln()
+        return try {
+            readln()
+        } catch (_: RuntimeException) {
+            // We assume this is a ReadAfterEOFException which means that the process was closed before reading
+            exitProcess(0)
+        }
     }
 
     fun promptDirection(
@@ -31,7 +37,7 @@ object Prompts {
         fgColor: AnsiColor = AnsiColor.AQUA,
         bgColor: AnsiColor? = null,
         bold: Boolean = false
-    ) = Direction.parse(prompt(prompt, fgColor, bgColor, bold).lowercase())
+    ): Direction? = Direction.parse(prompt(prompt, fgColor, bgColor, bold).lowercase())
 
     fun promptBool(
         prompt: String,

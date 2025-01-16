@@ -8,7 +8,7 @@ import net.radsteve.textadventure.scene.impl.StartScene
 import kotlin.random.Random
 import kotlin.system.exitProcess
 
-fun randomBool() = Random.nextDouble(0.0, 1.0) >= 0.55
+fun randomBool(): Boolean = Random.nextDouble(0.0, 1.0) >= 0.55
 
 fun gameWon() {
     print(AnsiColor.GREEN_BACKGROUND)
@@ -31,6 +31,22 @@ fun gameLost() {
 }
 
 fun main() {
+    // We get some charset encoding issues on Java 8, so we just send a warning for versions
+    // other than Java 21. java.version sadly isn't the actual number but rather a string, such as
+    // 21.0.5 or 1.8.0_202
+
+    val javaVersion = System.getProperty("java.version")
+
+    val javaVersionInt = if (javaVersion.substring(0, 2) == "1.") {
+        javaVersion.split(".")[1].toInt()
+    } else {
+        javaVersion.split(".")[0].toInt()
+    }
+
+    if (javaVersionInt != 21) {
+        println(I18nManager.translate("JAVA_8_WARNING", javaVersionInt))
+    }
+
     val playerName = prompt(I18nManager.translate("NAME_PROMPT"))
     println(I18nManager.translate("WELCOME_TEXT", playerName))
 

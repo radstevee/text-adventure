@@ -6,11 +6,11 @@ import java.util.*
 object I18nManager {
     private const val FILE_PREFIX = "translations/game"
 
-    private val defaultLocale: Locale = Locale.of("en", "US")
+    private val defaultLocale: Locale = Locale.US
     private lateinit var currentBundle: ResourceBundle
 
     private val cache = mutableMapOf<String, String>()
-    private val stringListCache = mutableMapOf<String, List<String>>()
+    private val stringsCache = mutableMapOf<String, List<String>>()
 
     init {
         loadBundle(Locale.getDefault())
@@ -25,24 +25,24 @@ object I18nManager {
     }
 
     fun translate(key: String, vararg args: Any): String {
-        if (key in cache) return cache[key]!!.format(*args)
+        cache[key]?.let { string -> return string.format(*args) }
 
         return runCatching {
             currentBundle.getString(key).format(*args)
         }.getOrElse { key }.also { value -> cache[key] = value }
     }
 
-    fun translateStringArray(key: String): List<String> {
-        if (key in stringListCache) return stringListCache[key]!!
+    fun translateStrings(key: String): List<String> {
+        stringsCache[key]?.let { strings -> return strings }
 
-        return currentBundle.getString(key).split(";").map(String::trim).also { value -> stringListCache[key] = value }
+        return currentBundle.getString(key).split(";").map(String::trim).also { value -> stringsCache[key] = value }
     }
 
-    fun getYesInputs() = translateStringArray("YES_INPUTS")
-    fun getNoInputs() = translateStringArray("NO_INPUTS")
-    fun getLeftInputs() = translateStringArray("LEFT_INPUTS")
-    fun getRightInputs() = translateStringArray("RIGHT_INPUTS")
-    fun getUpInputs() = translateStringArray("UP_INPUTS")
-    fun getDownInputs() = translateStringArray("DOWN_INPUTS")
-    fun getExistsMessages() = translateStringArray("EXISTS_MESSAGES")
+    fun getYesInputs(): List<String> = translateStrings("YES_INPUTS")
+    fun getNoInputs(): List<String> = translateStrings("NO_INPUTS")
+    fun getLeftInputs(): List<String> = translateStrings("LEFT_INPUTS")
+    fun getRightInputs(): List<String> = translateStrings("RIGHT_INPUTS")
+    fun getUpInputs(): List<String> = translateStrings("UP_INPUTS")
+    fun getDownInputs(): List<String> = translateStrings("DOWN_INPUTS")
+    fun getExistsMessages(): List<String> = translateStrings("EXISTS_MESSAGES")
 }

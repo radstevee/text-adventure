@@ -15,14 +15,14 @@ class BookViewerScene(override var parent: Scene?) : Scene {
 
     override fun display(playerName: String) {
         println(I18nManager.translate("BOOK_PAGE", 1))
-        println(I18nManager.translateStringArray("BOOK_CONTENTS")[page].format(page))
+        println(I18nManager.translateStrings("BOOK_CONTENTS")[page].format(page))
 
         while (!shouldExit) {
             val direction = Prompts.promptLeftRight("")
 
             when {
                 (direction == Direction.LEFT && page == 0) || (direction == Direction.RIGHT && page == PAGE_AMOUNT) -> {
-                    val pageContent = I18nManager.translateStringArray("BOOK_CONTENTS")[page].format(page)
+                    val pageContent = I18nManager.translateStrings("BOOK_CONTENTS")[page].format(page)
 
                     // No idea why but this is just 1 sometimes when it shouldn't be
                     println(I18nManager.translate("BOOK_PAGE", "${page + 1}").replace("1", "${page + 1}"))
@@ -44,7 +44,7 @@ class BookViewerScene(override var parent: Scene?) : Scene {
                 }
             }
 
-            val pageContent = I18nManager.translateStringArray("BOOK_CONTENTS")[page].format(page)
+            val pageContent = I18nManager.translateStrings("BOOK_CONTENTS")[page].format(page)
 
             // No idea why but this is just 1 sometimes when it shouldn't be
             println(I18nManager.translate("BOOK_PAGE", "${page + 1}").replace("1", "${page + 1}"))

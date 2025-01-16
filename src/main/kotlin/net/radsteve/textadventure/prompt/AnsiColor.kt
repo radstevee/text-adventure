@@ -7,7 +7,7 @@ package net.radsteve.textadventure.prompt
 fun foreColor(code: Int) = "\u001B[38;5;${code}m"
 fun backColor(code: Int) = "\u001B[48;5;${code}m"
 
-enum class AnsiColor(val code: String) {
+enum class AnsiColor(private val code: String) {
     RESET("\u001B[0m"),
     BOLD("\u001B[1m"),
 

@@ -10,7 +10,7 @@ import net.radsteve.textadventure.scene.Scene
 
 class DeepForestScene(override var parent: Scene?) : MovingScene {
     private var moveCount = 0
-    private val texts = I18nManager.translateStringArray("DEEPER_INTO_FOREST")
+    private val texts = I18nManager.translateStrings("DEEPER_INTO_FOREST")
     private val house = HouseEntity()
 
     override fun entityInDirection(

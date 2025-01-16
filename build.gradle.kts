@@ -11,7 +11,21 @@ repositories {
 }
 
 tasks {
+    processResources {
+        filteringCharset = "UTF-8"
+    }
+
+    shadowJar {
+        archiveClassifier = ""
+    }
+
     assemble {
         dependsOn(shadowJar)
+    }
+
+    jar {
+        manifest {
+            attributes("Main-Class" to "net.radsteve.textadventure.MainKt")
+        }
     }
 }
